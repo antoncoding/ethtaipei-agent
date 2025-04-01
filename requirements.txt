@@ -13,4 +13,3 @@ jsonschema>=4.23.0
 nilql>=0.0.0a12
 paramiko>=3.5.1
 duckduckgo-search>=7.4.2
-

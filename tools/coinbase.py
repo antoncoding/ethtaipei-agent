@@ -10,6 +10,11 @@ from coinbase_agentkit import (
     EthAccountWalletProviderConfig
 )
 
+from coinbase_agentkit import (
+    pyth_action_provider,
+    wallet_action_provider
+)
+
 # Load environment variables
 load_dotenv()
 
@@ -31,6 +36,10 @@ def get_coinbase_tools():
     )
 
     agent_kit = AgentKit(AgentKitConfig(
-        wallet_provider=wallet_provider
+        wallet_provider=wallet_provider,
+        action_providers=[
+            wallet_action_provider(),
+            pyth_action_provider()
+        ]
     ))
     return get_langchain_tools(agent_kit) 

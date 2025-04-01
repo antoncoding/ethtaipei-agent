@@ -3,7 +3,7 @@ from langchain_core.tools import tool
 
 @tool
 def search(query: str) -> str:
-    """Use this tool to search the internet using DuckDuckGo.
+    """Use this tool to search the internet (web) using DuckDuckGo.
     
     Args:
         query: The search query to look up

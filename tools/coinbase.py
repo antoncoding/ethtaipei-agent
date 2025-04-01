@@ -14,7 +14,8 @@ from coinbase_agentkit import (
     pyth_action_provider,
     wallet_action_provider
 )
-
+from tools.usdc_action import usdc_action_provider
+from configs.rpc import RPC_URL
 # Load environment variables
 load_dotenv()
 
@@ -32,6 +33,7 @@ def get_coinbase_tools():
         config=EthAccountWalletProviderConfig(
             account=account,
             chain_id="84532",
+            rpc_url=RPC_URL
         )
     )
 
@@ -39,7 +41,8 @@ def get_coinbase_tools():
         wallet_provider=wallet_provider,
         action_providers=[
             wallet_action_provider(),
-            pyth_action_provider()
+            pyth_action_provider(),
+            usdc_action_provider()
         ]
     ))
     return get_langchain_tools(agent_kit) 

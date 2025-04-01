@@ -16,7 +16,7 @@ def initialize_agent():
     """Initialize the agent with all available tools."""
     # Initialize the model
     llm = ChatOpenAI(
-        model="gpt-4o-mini",
+        model="gpt-4o",
         temperature=0,
         api_key=os.getenv("OPENAI_API_KEY")
     )
@@ -43,7 +43,7 @@ def run_chat_mode(agent_executor, config):
     print("Starting chat mode... Type 'exit' to end.")
     while True:
         try:
-            user_input = input("\nPrompt: ")
+            user_input = input("\n👤 ")
             if user_input.lower() == "exit":
                 break
 
@@ -52,9 +52,9 @@ def run_chat_mode(agent_executor, config):
                 {"messages": [HumanMessage(content=user_input)]}, config
             ):
                 if "agent" in chunk:
-                    print(chunk["agent"]["messages"][0].content)
+                    print(f"🤖 {chunk['agent']['messages'][0].content}")
                 elif "tools" in chunk:
-                    print(chunk["tools"]["messages"][0].content)
+                    print(f"🛠️ {chunk['tools']['messages'][0].content}")
                 print("-------------------")
 
         except KeyboardInterrupt:
